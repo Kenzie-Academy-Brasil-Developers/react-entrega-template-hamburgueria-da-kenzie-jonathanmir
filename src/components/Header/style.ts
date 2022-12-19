@@ -40,11 +40,22 @@ export const StyledHeader = styled.header`
     width: 100px;
   }
 
+  .cart-icon-amount {
+    font-size: 12px;
+    position: absolute;
+    top: 18px;
+    right: 140px;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-1);
+    padding: 3px;
+  }
+  .icons-div {
+    display: flex;
+    align-items: center;
+  }
   @media (min-width: 800px) {
     width: 100%;
     height: 80px;
-    
-
     div {
       flex-direction: row;
       justify-content: space-between;
@@ -52,13 +63,13 @@ export const StyledHeader = styled.header`
       height: 80px;
     }
     input {
-      width: 365px;
+      width: 340px;
       height: 50px;
     }
 
     #search-btn {
       top: 25px;
-      right: 125px;
+      right: 190px;
       height: 40px;
     }
   }

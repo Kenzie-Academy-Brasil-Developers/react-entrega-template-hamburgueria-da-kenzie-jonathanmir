@@ -1,16 +1,33 @@
 import styled from "styled-components";
 
 export const StyledCartContainer = styled.div`
-  border-radius: var(--radius-1);
-  background-color: var(--color-gray-0);
-  height: fit-content;
-  padding-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 50px 15px;
+  background-color: rgb(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
 
+  .container {
+    opacity: 1;
+    border-radius: var(--radius-1);
+    background-color: var(--color-gray-0);
+    height: fit-content;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 500px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 150px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
   .cart-title {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     height: fit-content;
     padding: 10px;
@@ -86,6 +103,7 @@ export const StyledCartContainer = styled.div`
   @media (min-width: 800px) {
     margin-top: 0;
     margin-right: 115px;
+
     .cart-details-div {
       width: 365px;
       align-self: flex-start;
