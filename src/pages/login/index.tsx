@@ -13,15 +13,23 @@ export interface iUserLoginData {
   password: string,
 }
 export const Login = () => {
-  const { user } = useContext(AuthContext)
+  const { user, loadUser, loading, setLoading } = useContext(AuthContext)
 
+  useEffect(() => {
+    setLoading(false)
+    loadUser()
+  }, [])
+
+  if (loading) {
+    return null
+  }
   return (
     <>
       <StyledLogin className="container">
         <div className="slogan-section">
           <img src={logo} alt="" />
           <div className="slogan-div">
-            <div >
+            <div>
               <>
                 <FaShoppingBag />
               </>
@@ -30,7 +38,9 @@ export const Login = () => {
               A vida é como um sanduíche, é preciso reacheá-la com os   <span> melhores </span> ingredientes</p>
           </div>
         </div>
-        <LoginForm></LoginForm>
+        <section>
+          <LoginForm></LoginForm>
+        </section>
       </StyledLogin>
     </>
   );

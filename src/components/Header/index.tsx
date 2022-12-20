@@ -57,7 +57,7 @@ function Header({ }) {
             </button>
           </form>
           <div className="icons-div">
-            <p className="cart-icon-amount">{cart?.length}</p>
+            <p className="cart-icon-amount" onClick={() => setModalVisible(true)}>{cart?.length}</p>
             <button onClick={() => { setModalVisible(true) }}>
               <FaShoppingCart />
 

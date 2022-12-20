@@ -22,6 +22,14 @@ interface iResponse {
     user: iUser;
 }
 
+interface iAutoLoginResponse {
+    email: string;
+    password: string;
+    name: string;
+    id: number;
+}
+
+
 interface iAuthContext {
     user: iUser | null;
     setUser: (user: iUser) => void;
@@ -40,35 +48,27 @@ export const AuthProvider = ({ children }: iUserProviderProps) => {
     const token = localStorage.getItem("token");
 
     async function loadUser() {
+        const token = localStorage.getItem("token");
+        const id = (localStorage.getItem("uId"));
         if (token) {
             try {
-                console.log(user?.id)
                 setLoading(true)
-                const response = await api.get(`users/${user?.id}`, {
-                    headers: {
-                        auth: token
-                    }
-                });
-                setUser(response.data);
+                api.defaults.headers.common.authorization = `Bearer ${token}`;
+                const response = await api.get<iAutoLoginResponse>(`users/${id}`);
+                setUser(response.data)
                 navigate("/dashboard")
+                setLoading(false);
             }
             catch (err) {
-                console.log(err)
-                // window.localStorage.clear();
+                console.error(err)
+                window.localStorage.clear();
+                navigate("/")
             } finally {
                 setLoading(false);
                 navigate("/dashboard")
             }
         }
-
     }
-    // useEffect(() => {
-
-
-    //     loadUser();
-    // }, []);
-
-
 
 
     const userLogin = async (formData: iUserLoginData) => {
@@ -76,6 +76,7 @@ export const AuthProvider = ({ children }: iUserProviderProps) => {
             setLoading(true)
             const response = await api.post<iResponse>("login", formData)
             localStorage.setItem("token", response.data.accessToken)
+            localStorage.setItem("uId", JSON.stringify(response.data.user.id))
             setUser(response.data.user)
             navigate("/dashboard")
         }

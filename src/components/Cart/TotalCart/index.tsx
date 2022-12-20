@@ -16,12 +16,13 @@ function TotalCart() {
         display: "flex",
         justifyContent: "space-between",
         padding: "15px 20px 0px 20px",
+        borderTop: "1px solid var(--color-gray-50)"
       }}
       className="subtotal-div heading4"
     >
       <p>Total</p>
       <p>R${cart?.length && (cart?.reduce((acc, curr) => {
-        return (acc = acc + curr.price);
+        return (acc += curr.amount * curr.price);
       }, 0)).toFixed(2)}</p>
     </div>
     <button

@@ -7,12 +7,14 @@ export const StyledList = styled.ul`
   border-radius: var(--radius-1);
   margin-left: 15px;
   padding-right: 15px;
+  margin-top: 80px;
 
   @media (min-width: 800px) {
-    margin-left: 115px;
-    width: 75vw;
+    align-self: center;
+    margin: 0 115px;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
     gap: 20px;
-    overflow: revert;
   }
 `;

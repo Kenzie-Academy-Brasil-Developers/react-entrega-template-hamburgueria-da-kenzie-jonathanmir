@@ -30,11 +30,15 @@ export const StyledRegister = styled.div`
     .slogan-section {
       display: block;
       height: 280px;
-      width: 55vh;
       margin: auto auto;
+      width: 50vw;
       display: flex;
       align-items: center;
       flex-direction: column;
+    }
+
+    section {
+      width: 50vw;
     }
     .slogan-section > div {
       display: flex;

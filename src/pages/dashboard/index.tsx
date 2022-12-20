@@ -11,6 +11,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
+  const token = localStorage.getItem("token")
+  const userId = localStorage.getItem("uId")
 
   const { loadUser, userLogin, user, loading } = useContext(AuthContext)
   const {
@@ -27,75 +29,83 @@ export const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getList()
+    if (token) {
+      loadUser()
+      getList()
+    }
+    else {
+      navigate("/login")
+    }
   }, []);
 
-
-  if (!loading) {
-    if (filter) {
-      return (
-        <div className="App">
-          <ToastContainer
-            position="top-right"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          ></ToastContainer>
-          <Header></Header>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "30px",
-              justifyContent: "space-between",
-            }}
-            className="container search-results-div"
-          >
-            <p className="heading1 results-text">Resultados para: {keyWord}</p>
-            <button
-              className="default-btn green"
-              onClick={() => {
-                setFilter(null);
-              }}
-            >
-              Limpar Busca
-            </button>
-          </div>
-          <main className="">
-            <List></List>
-          </main>
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
-          <ToastContainer
-            position="top-right"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          ></ToastContainer>
-          <Header></Header>
-          <main className="">
-            <List></List>
-          </main>
-        </div>
-      );
-    }
+  if (loading) {
+    return null
   }
 
+  if (filter) {
+    return (
+      <div className="App">
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        ></ToastContainer>
+        <Header></Header>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginTop: "30px",
+            justifyContent: "space-between",
+          }}
+          className="container search-results-div"
+        >
+          <p className="heading1 results-text">Resultados para: {keyWord}</p>
+          <button
+            className="default-btn green"
+            onClick={() => {
+              setFilter(null);
+            }}
+          >
+            Limpar Busca
+          </button>
+        </div>
+        <main className="">
+          <List></List>
+        </main>
+      </div>
+    );
+  } else {
+    return (
+      <div className="App">
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        ></ToastContainer>
+        <Header></Header>
+        <main className="">
+          <List></List>
+        </main>
+      </div>
+    );
+
+
+  }
 
 
 };

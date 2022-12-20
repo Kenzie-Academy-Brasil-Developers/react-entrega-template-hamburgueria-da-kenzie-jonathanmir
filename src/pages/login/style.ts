@@ -40,11 +40,15 @@ export const StyledLogin = styled.div`
     .slogan-section {
       display: block;
       height: 280px;
-      width: 55vh;
+      width: 50vh;
       margin: auto auto;
       display: flex;
       align-items: center;
       flex-direction: column;
+    }
+
+    section {
+      width: 50vw;
     }
     .slogan-section > div {
       display: flex;

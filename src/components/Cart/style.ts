@@ -16,11 +16,11 @@ export const StyledCartContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 500px;
     position: absolute;
     margin-left: auto;
     margin-right: auto;
     top: 150px;
+    max-width: 350px;
     left: 0;
     right: 0;
     text-align: center;
@@ -72,6 +72,11 @@ export const StyledCartContainer = styled.div`
     justify-content: space-between;
     gap: 10px;
   }
+
+  .product-details-cart > p {
+    width: fit-content;
+  }
+
   .img-cart-div {
     background-color: var(--color-gray-0);
     display: flex;
@@ -83,7 +88,10 @@ export const StyledCartContainer = styled.div`
   }
 
   .img-cart-div > img {
-    width: 60px;
+    background-color: var(--color-gray-20);
+    min-width: 70px;
+    height: 70px;
+    border-radius: var(--radius-1);
   }
   .remove-btn {
     padding: 15px;
@@ -95,10 +103,37 @@ export const StyledCartContainer = styled.div`
     margin: 0 auto;
     margin-top: 15px;
     display: flex;
+    justify-content: center;
+    background-color: var(--color-gray-20);
+    width: 93%;
+    padding: 15px;
+    border-radius: var(--radius-1);
+  }
+  ul {
+    overflow: auto;
   }
 
   .product-title {
     width: 60%;
+  }
+
+  .amount-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--color-gray-20);
+    width: 25%;
+    height: 30px;
+    padding: 2px 0px;
+  }
+  .amount-div > p {
+    background-color: var(--color-gray-0);
+    width: 35px;
+    height: 26px;
+  }
+  .amount-div > button {
+    font-size: 25px;
+    color: var(--color-secondary);
   }
   @media (min-width: 800px) {
     margin-top: 0;
@@ -127,13 +162,12 @@ export const StyledCartContainer = styled.div`
     }
 
     .img-cart-div {
-      background-color: var(--color-gray-20);
-      min-width: 70px;
-      height: 70px;
-      border-radius: var(--radius-1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    }
+
+    @media (min-width: 800px) {
+      .container {
+        max-width: 500px;
+      }
     }
   }
 `;

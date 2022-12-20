@@ -19,7 +19,7 @@ function Cart({ }) {
           <p className="heading3 ">Carrinho de compras</p>
           <button onClick={() => setModalVisible(false)}>X</button>
         </div>
-        {!cart ? (
+        {cart.length == 0 ? (
           <div className="cart-details-div">
             <div>
               <p className="heading3">Sua sacola está vazia</p>
